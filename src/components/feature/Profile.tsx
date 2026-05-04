@@ -5,11 +5,7 @@ import { SocialLinks } from "../ui/social/SocialButton";
 import AvatarImg from "../../assets/luis_avatar.avif"
 
 import { useState } from "react";
-
-
 import { Tooltip } from "../ui/tooltip/Tooltip";
-import { i } from "motion/react-client";
-
 
 export const UserProfile = () => {
     //
