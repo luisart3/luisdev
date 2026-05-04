@@ -17,6 +17,8 @@ import { StackGrid } from "../ui/stack/Stack";
 import { SkillsCard } from "./SkillsCard";
 
 import { Tooltip, TooltipCard } from "../ui/tooltip/Tooltip";
+import devarteaga from '../../assets/dev_arteaga.svg'
+import AvatarImg from '../../assets/luis_avatar.avif'
 
 export const BentoMain = () => {
     const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -180,7 +182,7 @@ export const BentoMain = () => {
                                         luisdev</p>
                                 </span>
                                 <div className=" relative inline-block">
-                                    <img src="../../../src/assets/dev_arteaga.svg" className="size-24 select-none" />
+                                    <img src={devarteaga} className="size-24 select-none" />
                                     <motion.div
 
                                         animate={{
@@ -294,7 +296,7 @@ export const BentoMain = () => {
                                                             whileHover={{ scale: 1.05, rotate: 0 }}
                                                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                             className=" w-30 h-30 overflow-hidden rounded-4xl border-2 border-white/20  rotate-6 ">
-                                                            <img src="../../src/assets/luis_avatar.webp" className="h-full w-full object-cover select-none" alt="Avatar" />
+                                                            <img src={AvatarImg} className="h-full w-full object-cover select-none" alt="Avatar" />
                                                         </motion.div>
                                                         <motion.div
                                                             initial={{ scale: 0 }}

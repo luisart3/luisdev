@@ -2,11 +2,13 @@ import { AvatarRoot as Avatar } from "../ui/avatar/Avatar"
 import { motion } from "motion/react";
 import { Map, SMS, Copy, Check } from "../icons/UIIcons";
 import { SocialLinks } from "../ui/social/SocialButton";
+import AvatarImg from "../../assets/luis_avatar.avif"
 
 import { useState } from "react";
 
 
 import { Tooltip } from "../ui/tooltip/Tooltip";
+import { i } from "motion/react-client";
 
 
 export const UserProfile = () => {
@@ -38,7 +40,7 @@ export const UserProfile = () => {
             <Avatar>
 
                 {userHasImage ? (
-                    <Avatar.Image src="../src/assets/luis_avatar.avif" alt="Luis Artega" />
+                    <Avatar.Image src={AvatarImg} alt="Luis Artega" />
                 ) : (
                     <Avatar.Fallback>LA</Avatar.Fallback>
                 )}
