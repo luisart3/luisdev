@@ -93,7 +93,7 @@ export default function AnimatedTabs({
                 aria-label="Tabs"
                 className={cn(baseContainerStyles, className)}
                 role="tablist">
-                {tabs.map((tab, index) => {
+                {tabs.map((tab, _) => {
                     const isActive = activeTab === tab.id
 
                     return (

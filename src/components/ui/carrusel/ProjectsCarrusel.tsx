@@ -139,7 +139,6 @@ export const ProjectsCarrusel = <T,>({
     items,
     renderItem,
     className,
-    height = "500px",
     excludeIds = [],
     showIndicators = true,
     showNavigation = true,

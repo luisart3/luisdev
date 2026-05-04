@@ -10,7 +10,6 @@ const TOUCH_SCROLL_THRESHOLD = 100;
 const SCALE_FACTOR = 0.08;
 const MIN_SCALE = 0.08;
 const MAX_SCALE = 2;
-const HOVER_SCALE_MULTIPLIER = 1.02;
 const CARD_PADDING = 100;
 
 export interface ScrollableCardProps<T> {
