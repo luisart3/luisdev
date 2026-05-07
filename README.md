@@ -1,5 +1,5 @@
 
-![Preview](./src/assets/preview.avif)
+![Preview](./public/preview.avif)
 
 
 ##  Luis Arteaga | Desarrollador Frontend UI
