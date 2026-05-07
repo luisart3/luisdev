@@ -5,7 +5,10 @@ import { SocialLinks } from "../ui/social/SocialButton";
 import AvatarImg from "../../assets/luis_avatar.avif"
 
 import { useState } from "react";
+
 import { Tooltip } from "../ui/tooltip/Tooltip";
+
+
 
 export const UserProfile = () => {
     //
@@ -69,6 +72,10 @@ export const UserProfile = () => {
 
                 <motion.button 
                     onClick={copyEmail}
+                    onTouchEnd={(e) => {
+                        e.preventDefault();
+                        copyEmail();
+                    }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     className=" relative cursor-pointer p-1 rounded-lg hover:bg-white/5">

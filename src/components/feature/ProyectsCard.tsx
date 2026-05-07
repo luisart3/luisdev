@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 
-import { projectItem, caseStudies } from "../../data/ProyectItems";
+import { projectItem, caseStudies, personalItems } from "../../data/ProyectItems";
 import type { ProyectItem } from "../../data/ProyectItems";
 import type { CaseStudy } from "../../data/ProyectItems";
+import type { PersonalItem } from "../../data/ProyectItems";
 
 
 import { Github } from "@boxicons/react";
@@ -17,15 +18,16 @@ import AnimatedTabs from "../ui/tabs/AnimatedTabs";
 const tabs = [
     { id: "Web", label: "Desarrollo Web" },
     { id: "CaseStudy", label: "Infraestructura y Sistemas" },
+    { id: "personal", label: "Personal" },
 ];
 
 export const ProyectsCard = () => {
 
     const [activeTab, setActiveTab] = useState("Web");
 
-    const [selectedProject, setSelectedProject] = useState<ProyectItem | CaseStudy | null>(null)
+    const [selectedProject, setSelectedProject] = useState<ProyectItem | CaseStudy | PersonalItem | null>(null)
 
-    const openProject = (project: ProyectItem | CaseStudy) => {
+    const openProject = (project: ProyectItem | CaseStudy | PersonalItem) => {
         setSelectedProject(project)
     }
 
@@ -132,6 +134,55 @@ export const ProyectsCard = () => {
                                 <ProjectsCarrusel
                                     key="content-case"
                                     items={caseStudies}
+                                    renderItem={(item) => (
+                                        <motion.div
+                                            layoutId={`project-${item.id}`}
+                                            onClick={() => openProject(item)}
+                                            key={item.id}
+
+                                            className="relative group ">
+
+                                            <div className="group">
+
+                                                <img src={item.image}
+                                                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                                                    alt={item.name}
+                                                    loading="lazy"
+                                                />
+
+                                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition" />
+                                            </div>
+                                            <div className=" absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition">
+                                                <h2 className=" text-md md:text-lg select-none font-semibold text-white backdrop-blur-md px-4 py-2 rounded-xl bg-black/40">
+                                                    {item.name}
+                                                </h2>
+                                            </div>
+                                        </motion.div>
+                                    )}>
+                                </ProjectsCarrusel>
+                            )}
+                        </AnimatePresence>
+
+                        <AnimatePresence mode="wait">
+                            {isLoading ? (
+                                <motion.div
+                                    key="skeleton-case"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="w-full flex justify-center px-4"
+                                >
+                                    <div className="w-full max-w-[600px] h-64 md:h-90 bg-zinc-900/50 border border-white/10 rounded-4xl animate-pulse" />
+                                </motion.div>
+                            ) : personalItems.length === 0 ? (
+                                <div className="flex items-center justify-center py-12">
+                                    <p className="text-gray-500">No hay proyectos disponibles</p>
+                                </div>
+
+                            ) : (
+                                <ProjectsCarrusel
+                                    key="content-case"
+                                    items={personalItems}
                                     renderItem={(item) => (
                                         <motion.div
                                             layoutId={`project-${item.id}`}
@@ -360,6 +411,85 @@ export const ProyectsCard = () => {
                                                             </section>
                                                         ))}
                                                     </main>
+                                                </div>
+
+                                            )}
+                                            {selectedProject.type === "personal" && (
+                                                <div className="space-y-8">
+                                                    <motion.header
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        transition={{ delay: 0.4, duration: 0.6 }}
+                                                        className="flex flex-col gap-3">
+                                                        <div className="space-y-1">
+                                                            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
+                                                                {selectedProject.title}
+                                                            </h2>
+                                                            <div className="flex flex-col md:flex-row md:items-center items-start gap-3 text-sm text-zinc-400">
+                                                                <span>{selectedProject.date}</span>
+                                                                <span className=" hidden md:inline-block w-1 h-1 rounded-full bg-zinc-700" />
+                                                                <div className="flex items-center gap-1.5">
+                                                                    <Timer className="size-4 text-purple-500" />
+                                                                    <span>{selectedProject.time} de lectura</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p className="text-lg text-zinc-400 leading-relaxed">
+                                                            {selectedProject.description}
+                                                        </p>
+                                                    </motion.header>
+
+                                                    <hr className="border-white/5" />
+
+
+                                                    <main className="space-y-10">
+                                                        {selectedProject.sections.map((section) => (
+                                                            <section key={section.id} className="flex flex-col gap-3">
+                                                                <motion.div
+                                                                    initial={{ opacity: 0, y: 20 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    transition={{ delay: 0.6, duration: 0.6 }}
+                                                                    className=" flex flex-col gap-1.5">
+                                                                    <h3 className="text-lg  font-medium text-purple-400">
+                                                                        {section.heading}
+                                                                    </h3>
+                                                                    <div className=" border-b-4 w-5 rounded-3xl border-b-fuchsia-500"></div>
+                                                                </motion.div>
+
+                                                                <motion.p
+                                                                    initial={{ opacity: 0, y: 20 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    transition={{ delay: 0.8, duration: 0.6 }}
+                                                                    className="whitespace-pre-line text-sm text-zinc-300 leading-relaxed">
+                                                                    {section.content}
+                                                                </motion.p>
+
+
+
+                                                            </section>
+                                                        ))}
+                                                    </main>
+                                                    <div className="flex items-center gap-6 mt-10 pt-6 border-t border-white/5">
+                                                        <a
+                                                            href={selectedProject.url_repo}
+                                                            rel="noopener noreferrer"
+                                                            target="_blank"
+                                                            className="group flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+                                                        >
+                                                            <Github className="size-5 transition-transform group-hover:-translate-y-1" />
+                                                            Ver código
+                                                        </a>
+
+                                                        <a
+                                                            href={selectedProject.url_demo}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-2 rounded-xl  text-purple-500 text-sm font-bold   hover:scale-105 transition-all"
+                                                        >
+                                                            <ArrowUpRight className="size-4 stroke-[3px]" />
+                                                            Ver demo
+                                                        </a>
+                                                    </div>
                                                 </div>
 
                                             )}

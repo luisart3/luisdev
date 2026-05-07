@@ -60,10 +60,10 @@ export default function AnimatedTabs({
     
 
     const baseContainerStyles = cn(
-        "relative inline-flex mx-auto",
+        "relative flex  md:flex-row flex-col gap-2  mx-auto",
         variant === "underline" && " gap-1 border border-b",
-        variant === "pill" && " gap-1 rounded-full bg-zinc-800 p-1",
-        variant === "segment" && " gap-0 rounded-lg bg-zinc-900 p-1"
+        variant === "pill" && " gap-1 rounded-full bg-transparent md:bg-zinc-800 p-1",
+        variant === "segment" && " gap-0 rounded-lg bg-transparent md:bg-zinc-900 p-1"
     );
 
     const getTabStyles = (isActive: boolean) =>

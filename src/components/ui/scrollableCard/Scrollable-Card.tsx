@@ -369,7 +369,7 @@ const ScrollableCardStack = <T,>({
                             }
                         >
                             <div
-                                className={cn("md:max-w-sm max-w-md rounded-xl transition-all duration-200",
+                                className={cn("max-w-sm rounded-xl transition-all duration-200",
                                     isHovered && "shadow-2xl",
                                     isScrolling && isActive && "ring-2 ring-opacity-50")}
                                 >

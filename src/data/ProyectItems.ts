@@ -1,6 +1,6 @@
 export interface CarouselItem {
   id: number
-  type: "web" | "caseStudy";
+  type: "web" | "caseStudy" | "personal";
   name: string
   image: string
 }
@@ -30,6 +30,20 @@ export interface CaseStudy extends CarouselItem {
   time: string
   image: string
   sections: CaseStudySection[]
+}
+
+export interface PersonalItem extends CarouselItem {
+  id: number
+  type: "personal"
+  name: string
+  title: string
+  description: string
+  date: string
+  time: string
+  image: string
+  sections: CaseStudySection[]
+  url_repo?: string
+  url_demo?: string
 }
 
 export interface CaseStudySection {
@@ -297,5 +311,48 @@ export const caseStudies: CaseStudy[] = [
       }
 
     ]
+  }
+]
+
+export const personalItems: PersonalItem[] = [
+  {
+    id: 1,
+    type: "personal",
+    title: "Codev",
+    description: "La red social para desarrolladores. Comparte código, conéctate y colabora con desarrolladores de todo el mundo.",
+    name: "Codev",
+    date: "Realizado el 07 de Mayo del 2026",
+    time: "3min",
+    image: new URL('../../src/assets/proyects/Codev.avif', import.meta.url).href,
+    sections: [
+      {
+        id: 1,
+        heading: "Contexto y recto",
+        content: "No existía una red social enfocada exclusivamente en desarrolladores para compartir código de forma nativa. Las opciones existentes como Twitter o LinkedIn no están diseñadas para snippets. El reto era diseñar una experiencia mobile-first y construir una landing page que comunicara la visión del producto. \n Solo yo como diseñador y desarrollador, sin presupuesto, usando React + TypeScript + Bun.",
+      },
+      {
+        id: 2,
+        heading: "Oportunidad",
+        content: "Descubrí que los devs comparten código en plataformas que no están optimizadas para ello, el código se ve mal, no hay syntax highlighting, ni comunidad enfocada. Esa fricción era la oportunidad."
+      },
+      {
+        id: 3,
+        heading: "Proceso",
+        content: "Diseñé primero el flujo mobile con onboarding de 3 pasos, feed de posts y perfil de usuario. Luego construí la landing page con Bun + React + TS + Tailwind + Framer Motion para comunicar la visión del producto con animaciones y mockups reales."
+      },
+      {
+        id: 4,
+        heading: "Evidencia",
+        content: "Landing page funcional con lista de espera, animaciones de scroll, typing animation en hero y mockups reales de la app mobile integrados."
+      }, 
+      {
+        id: 5,
+        heading: "Reflexión",
+        content: "Aprendí que definir el scope desde el inicio es clave. Me bloqueé queriendo construir todo antes de tener clara la visión. Empezar por la landing me ayudó a clarificar qué era Codev realmente."
+      }
+
+    ],
+    url_repo: "https://github.com/luisart3/codev",
+    url_demo: "https://luisart3.github.io/codev/"
   }
 ]
