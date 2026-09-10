@@ -8,20 +8,7 @@ export interface SkillItems {
 
 
 export const skillitems: SkillItems[] = [
-    {
-        id: 8,
-        name_company: 'H. Ayuntamiento de Ixcateopan',
-        role: 'Soporte web y sistemas técnicos',
-        date: '2025 - 2026',
-        description: 'Soporte técnico y administración de sistemas en entorno institucional, con mejoras estructurales en portal web y configuración de software administrativo en servidor.'
-    },
-    {
-        id:7,
-        name_company: 'H. Ayuntamiento de cuetzala',
-        role: 'Soporte web  ',
-        date: 'Freelance',
-        description: 'Administración básica de servicios de alojamiento web, gestión de documentos institucionales en formato PDF y registro de información en la base de datos del portal académico.'
-    },
+    
     {
         id: 6,
         name_company: 'MiDespacho',
